@@ -76,12 +76,14 @@ export default {
 
   mounted() {
       this.currentTab = this.tabs[0];
-      const addBtn = this.$refs.addButton;
+      let _self = this;
       document.querySelector('.container').addEventListener('scroll', function(evt) {
           try {
-              const height = window.innerHeight < 720 ? 720 - window.innerHeight : 0;
-              addBtn.style.bottom = -evt.target.scrollTop + 16 + height + 'px';
+              //const height = window.innerHeight < 720 ? 720 - window.innerHeight : 0;
+                console.log(evt.target.scrollTop, evt.target.offsetHeight);
+               _self.$refs.addButton.style.top = evt.target.scrollTop + evt.target.offsetHeight - 100 + 'px';
           } catch (e) {
+              console.log(e)
               return;
           }
       })
